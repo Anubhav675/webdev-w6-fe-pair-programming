@@ -24,5 +24,3 @@ dist-ssr
 *.sw?
 db.json
 notes-frontend.code-workspace
-
-node_modules/
