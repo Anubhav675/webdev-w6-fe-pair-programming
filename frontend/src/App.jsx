@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import BookPage from "./pages/BookPage";
 // pages & components
 import Home from "./pages/HomePage";
 import AddBookPage from "./pages/AddBookPage";
@@ -14,6 +14,7 @@ const App = () => {
         <div className="content">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/books/:id" element={<BookPage />} />
             <Route path="/add-book" element={<AddBookPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
@@ -24,4 +25,3 @@ const App = () => {
 };
 
 export default App;
-
