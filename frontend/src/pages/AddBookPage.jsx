@@ -35,7 +35,7 @@ const AddBookPage = () => {
       const res = await fetch("/api/books", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newBook),
+        body: JSON.stringify(newBook)
       });
       if (!res.ok) throw new Error("Failed to add book");
     } catch (error) {
@@ -105,7 +105,7 @@ const AddBookPage = () => {
           value={borrower}
           onChange={(e) => setBorrower(e.target.value)}
         />
-        <button onClick={addBook}>Add Book</button>
+        <button>Add Book</button>
       </form>
     </div>
   );
