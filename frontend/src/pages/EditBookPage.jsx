@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const EditBookPage = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = user ? user.token : null;
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -27,14 +29,12 @@ const EditBookPage = () => {
         setPublisher(data.publisher);
         setGenre(data.genre);
 
-        setIsAvailable(
-          data.availability.isAvailable ? "true" : "false"
-        );
+        setIsAvailable(data.availability.isAvailable ? "true" : "false");
 
         setDueDate(
           data.availability.dueDate
             ? data.availability.dueDate.split("T")[0]
-            : ""
+            : "",
         );
 
         setBorrower(data.availability.borrower || "");
@@ -54,14 +54,12 @@ const EditBookPage = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(updatedBook),
       });
 
-      if (!res.ok) {
-        throw new Error("Failed to update book");
-      }
-
+      if (!res.ok) throw new Error("Failed to update book");
       return true;
     } catch (error) {
       console.error("Error updating book:", error);

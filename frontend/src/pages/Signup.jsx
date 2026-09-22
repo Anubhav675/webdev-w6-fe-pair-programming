@@ -1,8 +1,7 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -39,6 +38,7 @@ const Signup = () => {
 
     localStorage.setItem("user", JSON.stringify(user));
     console.log("success");
+    setIsAuthenticated(true);
     navigate("/");
   };
 
@@ -47,19 +47,47 @@ const Signup = () => {
       <h2>Sign Up</h2>
       <form onSubmit={handleFormSubmit}>
         <label>Name:</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <label>Email address:</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <label>Password:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <label>Phone Number:</label>
-        <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+        <input
+          type="text"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
         <label>Gender:</label>
-        <input type="text" value={gender} onChange={(e) => setGender(e.target.value)} />
+        <input
+          type="text"
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
+        />
         <label>Date of Birth:</label>
-        <input type="date" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
+        <input
+          type="date"
+          value={dateOfBirth}
+          onChange={(e) => setDateOfBirth(e.target.value)}
+        />
         <label>Membership Status:</label>
-        <input type="text" value={membershipStatus} onChange={(e) => setMembershipStatus(e.target.value)} />
+        <input
+          type="text"
+          value={membershipStatus}
+          onChange={(e) => setMembershipStatus(e.target.value)}
+        />
         <button>Sign up</button>
         {error && <p className="error">{error}</p>}
       </form>
